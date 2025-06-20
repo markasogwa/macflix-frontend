@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner";
-import MovieFilter from "../components/MovieFIlter";
+import MovieFilter from "../components/MovieFilter";
 import MovieGenres from "../components/MovieGenres";
 import MovieRatingYear from "../components/MovieRatingYear";
 import RecommendationList from "../components/RecommendationList";
