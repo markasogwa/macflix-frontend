@@ -35,7 +35,10 @@ export default function SearchMovies() {
 
         params.page = newPage;
 
-        const res = await axios.get("/api/movie/search", { params });
+        const res = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/api/movie/search`,
+          { params }
+        );
         const results = Array.isArray(res.data?.results)
           ? res.data.results
           : [];
@@ -60,7 +63,9 @@ export default function SearchMovies() {
   const loadPopularMovies = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("/api/movie/popular");
+      const res = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/api/movie/popular`
+      );
       setMovies(Array.isArray(res.data.results) ? res.data.results : []);
       setTotalPages(res.data.total_pages || 1);
     } catch {

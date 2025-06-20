@@ -9,7 +9,9 @@ const MovieCredits = ({ id }) => {
   useEffect(() => {
     const fetchCredits = async () => {
       try {
-        const res = await axios.get(`/api/movie/${id}/credits`);
+        const res = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/api/movie/${id}/credits`
+        );
         if (res.data && res.data.cast) {
           setCast(res.data.cast || []);
         }

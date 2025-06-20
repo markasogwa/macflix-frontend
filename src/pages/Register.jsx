@@ -17,7 +17,10 @@ export default function Register() {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("/api/auth/register", data);
+      await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/auth/register`,
+        data
+      );
       toast.success("Registration successful!");
       setShowModal(true);
       reset();

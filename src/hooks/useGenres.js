@@ -9,7 +9,7 @@ export default function UseGenres() {
     const fetchGenres = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/movie/genres`
+          `${import.meta.env.VITE_BASE_URL}/api/movie/genres`
         );
         setGenres(res.data);
       } catch (error) {

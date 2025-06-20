@@ -10,7 +10,7 @@ const MovieRecommendations = ({ id }) => {
   useEffect(() => {
     const fetchRecs = async () => {
       try {
-        const res = await axios(`/api/movie/${id}/recommendations`);
+        const res = await axios(`${import.meta.env.VITE_BASE_URL}/api/movie/${id}/recommendations`);
         setRecs(res.data || []);
       } catch (error) {
         console.error("Error fetching recommendations:", error);

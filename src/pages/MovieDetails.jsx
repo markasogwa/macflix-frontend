@@ -17,7 +17,9 @@ export default function MovieDetails({ user, token }) {
     const fetchMovie = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`/api/movie/${id}`);
+        const res = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/api/movie/${id}`
+        );
         setMovie(res.data);
       } catch (err) {
         console.error("Error fetching movie details:", err);
@@ -32,7 +34,7 @@ export default function MovieDetails({ user, token }) {
   const saveFavorite = async () => {
     try {
       await axios.post(
-        "/api/favorite",
+        `${import.meta.env.VITE_BASE_URL}/api/favorite`,
         {
           movieId: movie.id.toString(),
           title: movie.title,
@@ -54,7 +56,7 @@ export default function MovieDetails({ user, token }) {
   const saveToWatchlist = async () => {
     try {
       await axios.post(
-        "/api/watchlist",
+        `${import.meta.env.VITE_BASE_URL}/api/watchlist`,
         {
           movieId: movie.id.toString(),
           title: movie.title,

@@ -13,7 +13,7 @@ function Favorites({ token }) {
   useEffect(() => {
     async function fetchFavorites() {
       try {
-        const res = await axios.get("/api/favorite", {
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/favorite`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -32,7 +32,7 @@ function Favorites({ token }) {
   const handleRemove = async (id) => {
     setRemoving(id);
     try {
-      await axios.delete(`/api/favorite/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_BASE_URL}/api/favorite/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

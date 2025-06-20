@@ -13,11 +13,14 @@ function Watchlist({ token }) {
   useEffect(() => {
     async function fetchWatchlist() {
       try {
-        const res = await axios.get("/api/watchlist", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/api/watchlist`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setWatchlist(res.data);
       } catch (err) {
         console.error("Error fetching watchlist:", err);
@@ -32,11 +35,14 @@ function Watchlist({ token }) {
   const handleRemove = async (id) => {
     setRemoving(id);
     try {
-      await axios.delete(`/api/watchlist/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(
+        `${import.meta.env.VITE_BASE_URL}/api/watchlist/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setWatchlist((prev) => prev.filter((item) => item._id !== id));
       toast.success("Removed from watchlist");
     } catch (err) {

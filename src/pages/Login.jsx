@@ -42,7 +42,7 @@ export default function Login() {
     setSubmitting(true);
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/auth/login`,
+        `${import.meta.env.VITE_BASE_URL}/api/auth/login`,
         { email, password }
       );
       const { user, token } = res.data;

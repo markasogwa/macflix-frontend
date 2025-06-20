@@ -23,11 +23,14 @@ export default function Profile() {
 
       setLoading(true);
       try {
-        const res = await axios.get("/api/user/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/api/user/profile`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         setUser(res.data);
         setUsername(res.data.username || "");
@@ -62,12 +65,16 @@ export default function Profile() {
 
     setLoading(true);
     try {
-      const res = await axios.put("/api/user/profile", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.put(
+        `${import.meta.env.VITE_BASE_URL}/api/user/profile`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       toast.success("Profile updated!");
       setUser(res.data.user);
