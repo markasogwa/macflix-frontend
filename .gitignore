@@ -1,0 +1,56 @@
+# Logs
+logs
+*.log
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Dependency directories
+node_modules/
+
+# Production build output
+dist/
+
+# Local environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Vite cache (optional)
+.vite/
+
+# MacOS system files
+.DS_Store
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Optional: coverage reports
+coverage/
