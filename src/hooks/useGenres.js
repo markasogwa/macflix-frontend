@@ -8,7 +8,9 @@ export default function UseGenres() {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const res = await axios.get("/api/movie/genres");
+        const res = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/movie/genres`
+        );
         setGenres(res.data);
       } catch (error) {
         // Handle error appropriately

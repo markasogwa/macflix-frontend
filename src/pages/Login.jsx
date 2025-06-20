@@ -41,7 +41,10 @@ export default function Login() {
 
     setSubmitting(true);
     try {
-      const res = await axios.post("/api/auth/login", { email, password });
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/auth/login`,
+        { email, password }
+      );
       const { user, token } = res.data;
 
       if (!token) {
