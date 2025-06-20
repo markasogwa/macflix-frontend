@@ -31,7 +31,7 @@ export default function Home() {
   useEffect(() => {
     setPopularLoading(true);
     axios
-      .get("api/movie/popular")
+      .get(`${import.meta.env.VITE_BASE_URL}/api/movie/popular`)
       .then((res) => {
         setPopularMovies(res.data.results);
         setFilterMovies(res.data.results);
