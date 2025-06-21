@@ -42,7 +42,7 @@ export default function Register() {
             Create Account
           </h1>
           <p className="text-sm text-gray-500 mt-1">
-            Join MovieRec and explore awesome content!
+            Join MacFlix and explore awesome movies!
           </p>
         </div>
 
@@ -52,6 +52,7 @@ export default function Register() {
             <input
               {...register("username", { required: "Username is required" })}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 outline-none"
+              placeholder="macflix"
             />
             {errors.username && (
               <p className="text-sm text-red-500 mt-1">
@@ -72,6 +73,7 @@ export default function Register() {
                 },
               })}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 outline-none"
+              placeholder="your@email.com"
             />
             {errors.email && (
               <p className="text-sm text-red-500 mt-1">
@@ -92,6 +94,7 @@ export default function Register() {
                 },
               })}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 outline-none"
+              placeholder="••••••••"
             />
             {errors.password && (
               <p className="text-sm text-red-500 mt-1">

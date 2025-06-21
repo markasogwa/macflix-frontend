@@ -141,14 +141,14 @@ export default function SearchMovies() {
           <div className="flex gap-2 mt-6 sm:mt-0">
             <button
               type="submit"
-              className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-2 px-4 rounded transition"
+              className="w-full bg-red-600 hover:bg-cyan-700 text-white font-medium py-2 px-4 rounded transition"
             >
               Search
             </button>
             <button
               type="button"
               onClick={handleReset}
-              className="w-full border border-cyan-600 text-cyan-400 hover:bg-gray-700 py-2 px-4 rounded transition"
+              className="w-full border border-red-600 text-cyan-400 hover:bg-gray-700 py-2 px-4 rounded transition"
             >
               Reset
             </button>
