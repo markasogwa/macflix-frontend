@@ -54,10 +54,7 @@ export default function AppRoutes({ user, token }) {
             </PrivateRoute>
           }
         />
-        <Route
-          path="/movie/:id"
-          element={<MovieDetails user={user} token={token} />}
-        />
+        <Route path="/movie/:id" element={<MovieDetails />} />
       </Routes>
     </Router>
   );

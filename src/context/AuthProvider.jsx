@@ -1,4 +1,3 @@
-// AuthProvider.jsx
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -9,22 +8,25 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({ user: null, token: null });
   const [loading, setLoading] = useState(true);
 
-  // Load user on app start
   useEffect(() => {
     const loadUser = async () => {
-      const token = localStorage.getItem("token");
       const stored = localStorage.getItem("user");
-      if (!token || !stored) {
+      if (!stored) {
+        setLoading(false);
+        return;
+      }
+
+      const parsed = JSON.parse(stored);
+      const { user, token } = parsed;
+
+      if (!user || !token) {
         setLoading(false);
         return;
       }
 
       try {
-        // const parsed = JSON.parse(stored)
         const res = await axios.get("/api/user/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
         setAuth({ user: res.data, token });
       } catch (err) {
@@ -38,29 +40,14 @@ export const AuthProvider = ({ children }) => {
     loadUser();
   }, []);
 
-  // Login function
   const login = async ({ user, token }) => {
     localStorage.setItem("user", JSON.stringify({ user, token }));
-    try {
-      // const res = await axios.get("/api/user/profile", {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // });
-      setAuth({ user, token });
-    } catch (error) {
-      console.error(
-        "Login failed:",
-        error.response ? error.response.data : error.message
-      );
-      setAuth({ user: null, token: null });
-    }
+    setAuth({ user, token });
   };
 
-  // Logout function
   const logout = () => {
-    localStorage.removeItem("token");
-    setAuth({ user: null });
+    localStorage.removeItem("user");
+    setAuth({ user: null, token: null });
     toast.success("You have Logged out from your account successfully");
   };
 

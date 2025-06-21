@@ -1,17 +1,25 @@
 import axios from "axios";
-import { Heart, Plus } from "lucide-react";
+import { Heart, PlayCircle, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import Modal from "react-modal";
+import { Link, useParams } from "react-router-dom";
 import MovieCredits from "../components/MovieCredits";
 import MovieRecommendations from "../components/MovieRecommendations";
 import MovieReviews from "../components/MovieReviews";
+import MovieTrailer from "../components/MovieTrailer";
+import { useAuth } from "../context/useAuth";
 
-export default function MovieDetails({ user, token }) {
+Modal.setAppElement("#root"); // Ensure this matches your app root ID
+
+export default function MovieDetails() {
+  const { auth } = useAuth();
+  const { user, token } = auth;
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -148,24 +156,67 @@ export default function MovieDetails({ user, token }) {
           {/* Overview */}
           <p className="text-gray-300 leading-relaxed mb-6">{movie.overview}</p>
 
-          {/* Action buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          {/* Icon Buttons with Labels */}
+          <div className="flex gap-8 mt-6 text-cyan-300 text-lg">
             <button
               onClick={saveFavorite}
-              className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg shadow transition"
+              className="flex items-center gap-2 hover:text-red-500 transition"
+              aria-label="Add to Favorites"
             >
-              <Heart className="h-4 w-4" /> Save to Favorites
+              <Heart className="w-6 h-6" />
+              <span className="text-base">Favorite</span>
             </button>
 
             <button
               onClick={saveToWatchlist}
-              className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg shadow transition"
+              className="flex items-center gap-2 hover:text-green-500 transition"
+              aria-label="Add to Watchlist"
             >
-              <Plus className="h-4 w-4" /> Add to Watchlist
+              <Plus className="w-6 h-6" />
+              <span className="text-base">Watchlist</span>
+            </button>
+
+            <button
+              onClick={() => setModalIsOpen(true)}
+              className="flex items-center gap-2 hover:text-yellow-400 transition"
+              aria-label="Watch Trailer"
+            >
+              <PlayCircle className="w-6 h-6" />
+              <span className="text-base">Watch Trailer</span>
             </button>
           </div>
+
+          {/* Show login prompt button if user is not logged in */}
+          {!user && (
+            <div className="mt-4">
+              <Link to={"/login"}>
+                <button className="bg-red-600 hover:bg-cyan-700 text-white py-2 px-4 rounded font-semibold">
+                  Login to view your favorite and watchlist
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Modal for Trailer */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Trailer Modal"
+        className="bg-black p-4 rounded-lg max-w-3xl mx-auto mt-20 outline-none"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-start z-50"
+      >
+        <div className="flex justify-end mb-2">
+          <button
+            onClick={() => setModalIsOpen(false)}
+            className="text-white text-sm bg-red-600 hover:bg-red-700 px-3 py-1 rounded"
+          >
+            Close
+          </button>
+        </div>
+        <MovieTrailer movieId={movie.id} />
+      </Modal>
 
       {/* Reviews */}
       <div className="mt-12">

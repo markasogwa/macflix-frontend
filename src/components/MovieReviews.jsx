@@ -2,6 +2,7 @@ import axios from "axios";
 import { Pencil, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function MovieReviews({ movieId, user, token }) {
@@ -168,7 +169,15 @@ function MovieReviews({ movieId, user, token }) {
           </button>
         </form>
       ) : (
-        <p className="text-gray-500 text-sm italic">Login to add a review.</p>
+        <p className="text-gray-500 text-sm italic">
+          Login to add a review.{" "}
+          <Link
+            to="/login"
+            className="text-red-600 font-semibold hover:underline ml-2"
+          >
+            Login
+          </Link>
+        </p>
       )}
     </section>
   );
