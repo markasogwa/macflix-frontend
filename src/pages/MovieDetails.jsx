@@ -40,6 +40,11 @@ export default function MovieDetails() {
   }, [id]);
 
   const saveFavorite = async () => {
+    if (!token) {
+      toast.error("Please log in to save favorites.");
+      return;
+    }
+
     try {
       await axios.post(
         `${import.meta.env.VITE_BASE_URL}/api/favorite`,
@@ -62,6 +67,11 @@ export default function MovieDetails() {
   };
 
   const saveToWatchlist = async () => {
+    if (!token) {
+      toast.error("Please log in to save watchlist.");
+      return;
+    }
+
     try {
       await axios.post(
         `${import.meta.env.VITE_BASE_URL}/api/watchlist`,
