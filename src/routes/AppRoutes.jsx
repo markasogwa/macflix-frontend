@@ -6,6 +6,7 @@ import Favorites from "../pages/FavoritesMovie";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import MovieDetails from "../pages/MovieDetails";
+import NotFound from "../pages/NotFound";
 import Profile from "../pages/profile";
 import Register from "../pages/Register";
 import SearchMovies from "../pages/SearchMovies";
@@ -25,6 +26,7 @@ export default function AppRoutes({ user, token }) {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/search" element={<SearchMovies />} />
+        <Route path="*" element={<NotFound />} />
 
         <Route
           path="/watchlist"
