@@ -1,7 +1,7 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Menu } from "lucide-react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
 
 export default function NavBar() {
@@ -23,21 +23,46 @@ export default function NavBar() {
     <nav className="bg-gray-950 text-white px-6 py-4 shadow-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
-        <Link
+        <NavLink
           to="/"
           className="text-2xl font-extrabold tracking-wide text-red-500"
         >
           MacFlix
-        </Link>
+        </NavLink>
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-6">
-          <Link to="/" className="hover:text-red-400 transition">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `hover:text-red-400 transition hover:bg-red-900 hover:p-1 ${
+                isActive ? "active-link" : "inactive-link"
+              }`
+            }
+          >
             Home
-          </Link>
-          <Link to="/search" className="hover:text-red-400 transition">
+          </NavLink>
+          <NavLink
+            to="/filter"
+            className={({ isActive }) =>
+              `hover:text-red-400 transition hover:bg-red-900 hover:p-1 ${
+                isActive ? "active-link" : "inactive-link"
+              }`
+            }
+          >
+            Filter Movies
+          </NavLink>
+
+          <NavLink
+            to="/search"
+            className={({ isActive }) =>
+              `hover:text-red-400 transition hover:bg-red-900 hover:p-1 ${
+                isActive ? "active-link" : "inactive-link"
+              }`
+            }
+          >
             Search Movies
-          </Link>
+          </NavLink>
 
           {!user ? (
             <>
@@ -50,15 +75,29 @@ export default function NavBar() {
             </>
           ) : (
             <>
-              <Link to="/watchlist" className="hover:text-red-400 transition">
+              <NavLink
+                to="/watchlist"
+                className={({ isActive }) =>
+                  `hover:text-red-400 transition hover:bg-red-900 hover:p-1 ${
+                    isActive ? "active-link" : "inactive-link"
+                  }`
+                }
+              >
                 My Watchlist
-              </Link>
-              <Link to="/favorite" className="hover:text-red-400 transition">
+              </NavLink>
+              <NavLink
+                to="/favorite"
+                className={({ isActive }) =>
+                  `hover:text-red-400 transition hover:bg-red-900 hover:p-1 ${
+                    isActive ? "active-link" : "inactive-link"
+                  }`
+                }
+              >
                 My Favorites
-              </Link>
+              </NavLink>
               <button
                 onClick={handleLogout}
-                className="hover:text-red-400 transition cursor-pointer"
+                className="hover:text-white transition hover:bg-red-900 hover:p-1 cursor-pointer"
               >
                 Logout
               </button>
@@ -92,12 +131,12 @@ export default function NavBar() {
                   </DropdownMenu.Item>
                   <DropdownMenu.Separator className="h-px my-2 bg-gray-200" />
                   <DropdownMenu.Item asChild>
-                    <Link
+                    <NavLink
                       to="/profile"
-                      className="block px-3 py-1 text-blue-600 hover:bg-gray-100 rounded-md transition"
+                      className="block px-3 py-1 text-blue-600 hover:text-white cursor-pointer hover:bg-red-900 hover:p-1 rounded-md transition"
                     >
                       View Profile
-                    </Link>
+                    </NavLink>
                   </DropdownMenu.Item>
                 </DropdownMenu.Content>
               </DropdownMenu.Root>
@@ -128,12 +167,12 @@ export default function NavBar() {
 
           {!user ? (
             <>
-              {/* <Link to="/login" className="hover:text-red-400 transition">
+              <Link to="/login" className="hover:text-red-400 transition">
                 Login
               </Link>
               <Link to="/register" className="hover:text-red-400 transition">
                 Register
-              </Link> */}
+              </Link>
             </>
           ) : (
             <>

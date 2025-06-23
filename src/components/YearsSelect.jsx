@@ -6,7 +6,6 @@ function YearsSelect({ value, onChange }) {
     <div>
       {/* Year select */}
       <div className="flex flex-col">
-        <label className="mb-1 text-sm font-medium text-gray-300">Release Year</label>
         <select
           value={value}
           onChange={onChange}

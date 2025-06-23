@@ -5,9 +5,7 @@ function GenresSelect({value, onChange}) {
     return (
       <div>
         <div className="flex flex-col">
-          <label className="mb-1 text-sm font-medium text-gray-300">
-            Genre
-          </label>
+          
           <select
             value={value}
             onChange={onChange}

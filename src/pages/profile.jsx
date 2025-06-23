@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
 
 export default function Profile() {
@@ -12,6 +13,15 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const { setAuth } = useAuth();
+
+  const { logout } = useAuth();
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -157,13 +167,21 @@ export default function Profile() {
                 </section>
               )}
 
-              <div className="text-right">
+              <div className="flex justify-center flex-wrap gap-4">
                 <button
                   onClick={() => setEditing(true)}
                   className="bg-red-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold px-7 py-3 rounded-xl shadow-md transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1"
                   aria-label="Edit Profile"
                 >
                   Edit Profile
+                </button>
+
+                <button
+                  onClick={handleLogout}
+                  className="bg-red-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold px-7 py-3 rounded-xl shadow-md transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1"
+                  aria-label="Edit Profile"
+                >
+                  Logout
                 </button>
               </div>
             </div>

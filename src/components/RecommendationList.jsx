@@ -30,7 +30,7 @@ export default function RecommendationList({
 
   if (error) return <p>Error: {error}</p>;
   if (movies.length === 0 && !loading)
-    return <p>Keep watching to get smart recommendations.</p>;
+    return <p>None yet.</p>;
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-8">

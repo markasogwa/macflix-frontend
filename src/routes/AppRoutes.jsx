@@ -3,6 +3,7 @@ import { PrivateRoute } from "../components/PrivateRoute";
 import { useAuth } from "../context/useAuth";
 import MainLayout from "../layouts/MainLayout";
 import Favorites from "../pages/FavoritesMovie";
+import MovieFilter from "../pages/FilterMovies";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import MovieDetails from "../pages/MovieDetails";
@@ -26,6 +27,7 @@ export default function AppRoutes({ user, token }) {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/search" element={<SearchMovies />} />
+          <Route path="/filter" element={<MovieFilter />} />
           <Route path="*" element={<NotFound />} />
 
           <Route

@@ -1,2 +1,12 @@
 @import "tailwindcss";
 
+.active-link {
+  background-color: #fb2c36;
+  font-weight: bold;
+  padding: 0.3rem;
+  border-radius: 5px;
+}
+
+.inactive-link {
+  color: rgb(255, 255, 255);
+}

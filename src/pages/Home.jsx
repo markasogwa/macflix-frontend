@@ -2,13 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner";
-import MovieFilter from "../components/MovieFilter";
 import {
   NowPlayingMovieList,
   PopularMovieList,
   TopRatedMovieList,
   UpcomingMovieList,
 } from "../components/MovieList";
+import MovieSlider from "../components/MovieSlider";
 import RecommendationList from "../components/RecommendationList";
 import { useAuth } from "../context/useAuth";
 import { useInfiniteRecommendations } from "../hooks/useInfiniteRecommendations";
@@ -80,22 +80,25 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-gray-100 px-6 py-10 sm:py-16">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-gray-100 px-6 pt-10 sm:py-16">
       <div className="max-w-7xl mx-auto">
         {/* Header & Welcome */}
         {user ? (
           <>
-            <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 tracking-wide drop-shadow-lg">
+            <p className="text-4xl sm:text-1xl font-bold text-center mb-8 tracking-wide drop-shadow-lg">
               Welcome, <span className="text-red-500">{user.username}</span>!
-            </h1>
+            </p>
+
+            {/* Movie slider right after welcome */}
+            <MovieSlider movies={popularMovies} />
 
             {/* Recommended Movies */}
             {recommendedLoading ? (
               <LoadingSpinner message="Loading personalized recommendations..." />
             ) : (
               <section className="mb-16">
-                <h2 className="text-3xl font-bold mb-6 border-b-2 border-red-600 inline-block pb-2 tracking-wide">
-                  Smart Recommended Movies for You
+                <h2 className="font-bold mb-6 border-b-2 border-red-600 inline-block tracking-wide">
+                  Recommendations
                 </h2>
                 <RecommendationList
                   movies={recommendedMovies}
@@ -112,6 +115,9 @@ export default function Home() {
             <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 tracking-wide drop-shadow-lg">
               Welcome to <span className="text-red-600">MacFlix</span> Movie App
             </h1>
+            {/* Movie slider right after welcome */}
+            <MovieSlider movies={popularMovies} />
+
             <p className="mb-12 text-gray-300 max-w-lg text-lg leading-relaxed">
               Please log in to see personalized recommendations.
               <Link
@@ -124,41 +130,21 @@ export default function Home() {
           </>
         )}
 
-        {/* Movie Filter */}
-        <div className="mb-12">
-          <MovieFilter onFilterChange={() => {}} />
-        </div>
-
-        {/* Movie Lists in grid with cards */}
-        <section className="space-y-16">
-          {/* Now Playing */}
-          <div>
-            <NowPlayingMovieList
-              movies={nowPlayingMovies}
-              loading={nowPlayingLoading}
-            />
-          </div>
-
-          {/* Top Rated */}
-          <div>
-            <TopRatedMovieList
-              movies={topRatedMovies}
-              loading={topRatedLoading}
-            />
-          </div>
-
-          {/* Popular */}
-          <div>
-            <PopularMovieList movies={popularMovies} loading={popularLoading} />
-          </div>
-
-          {/* Upcoming */}
-          <div>
-            <UpcomingMovieList
-              movies={upcomingMovies}
-              loading={upcomingLoading}
-            />
-          </div>
+        {/* Movie Lists */}
+        <section className="space-y-16 pb-5">
+          <NowPlayingMovieList
+            movies={nowPlayingMovies}
+            loading={nowPlayingLoading}
+          />
+          <TopRatedMovieList
+            movies={topRatedMovies}
+            loading={topRatedLoading}
+          />
+          <PopularMovieList movies={popularMovies} loading={popularLoading} />
+          <UpcomingMovieList
+            movies={upcomingMovies}
+            loading={upcomingLoading}
+          />
         </section>
       </div>
     </div>

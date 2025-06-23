@@ -109,10 +109,8 @@ export default function SearchMovies() {
           onSubmit={handleSearch}
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 bg-gray-800 p-6 rounded-xl shadow-lg mb-10"
         >
-          <div className="flex flex-col">
-            <label className="mb-1 text-sm font-medium text-gray-300">
-              Title
-            </label>
+          {/* Title input stays on its own line */}
+          <div className="flex flex-col col-span-1 sm:col-span-2 md:col-span-1">
             <input
               type="text"
               value={filters.title}
@@ -124,24 +122,27 @@ export default function SearchMovies() {
             />
           </div>
 
-          <GenresSelect
-            value={filters.genre}
-            onChange={(e) =>
-              setFilters((f) => ({ ...f, genre: e.target.value }))
-            }
-          />
+          {/* Genre and Year on one line for mobile */}
+          <div className="flex flex-col sm:flex-row sm:col-span-2 md:col-span-2 gap-4">
+            <GenresSelect
+              value={filters.genre}
+              onChange={(e) =>
+                setFilters((f) => ({ ...f, genre: e.target.value }))
+              }
+            />
+            <YearsSelect
+              value={filters.year}
+              onChange={(e) =>
+                setFilters((f) => ({ ...f, year: e.target.value }))
+              }
+            />
+          </div>
 
-          <YearsSelect
-            value={filters.year}
-            onChange={(e) =>
-              setFilters((f) => ({ ...f, year: e.target.value }))
-            }
-          />
-
-          <div className="flex gap-2 mt-6 sm:mt-0">
+          {/* Buttons */}
+          <div className="flex gap-2 mt-6 sm:mt-0 col-span-1 md:col-span-1">
             <button
               type="submit"
-              className="w-full bg-red-600 hover:bg-cyan-700 text-white font-medium py-2 px-4 rounded transition"
+              className="w-full bg-red-600 hover:bg-cyan-700 cursor-pointer text-white font-medium py-2 px-4 rounded transition"
             >
               Search
             </button>
@@ -215,7 +216,7 @@ export default function SearchMovies() {
         <div className="text-center mt-10">
           <button
             onClick={loadMore}
-            className="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold px-6 py-2 rounded-lg transition"
+            className="bg-red-600 hover:bg-cyan-700 cursor-pointer text-white font-semibold px-6 py-2 rounded-lg transition"
           >
             Load More
           </button>

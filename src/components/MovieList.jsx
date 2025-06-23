@@ -13,7 +13,7 @@ export function PopularMovieList({ movies, loading }) {
 export function NowPlayingMovieList({ movies, loading }) {
   return (
     <HorizontalMovieList
-      title="Now Playing Movies"
+      title="Movies Playing Now"
       movies={movies}
       loading={loading}
     />
