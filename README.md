@@ -1,161 +1,114 @@
-# 🎬 Movie App Frontend Documentation
+# Movie Recommendation App
 
-**Frontend Stack**: React.js + Vite, React Router, Tailwind CSS, Axios
-**State Management**: useState, useContext, useEffect  
-**Authentication**: JWT-based (Token stored in localStorage)  
-**Backend API**: [Movie App Backend](./Movie_App_Backend_Documentation.md)  
-**Deployment**: Netlify
+> **⚠️ COPYRIGHT NOTICE:** This project and all its source code are the intellectual property of the author. **No part of this codebase may be copied, reproduced, distributed, or used — in whole or in part — without explicit written permission from the author.** Unauthorized use is a violation of copyright law.
 
 ---
 
-## 🌐 Project Structure
+A modern, responsive **Movie Recommendation Web Application** built with **React.js**, powered by the TMDB API, and backed by a custom Node.js/Express REST API. Built as my **Software Development Capstone** project through the 3MTT Nigeria & Darey.io program.
+
+**Live Demo:** https://macflix-movie-app.netlify.app/ 
+**Backend Repo:** https://github.com/markasogwa/macflix-backend
+
+---
+
+## Features
+
+- 🔍 **Search & Discovery** — Browse trending movies and search by title, genre in real time
+- 🎥 **Movie Detail Pages** — Ratings, overviews, cast info, and posters
+- 🔐 **Authentication** — Secure JWT-based login and registration
+- ❤️ **Favorites & Watchlist** — Save movies to personal lists
+- 📝 **User Reviews** — Add, edit, and delete your own reviews
+- 👤 **Profile Management** — Update personal details and profile picture
+- 📱 **Responsive Design** — Works across mobile, tablet, and desktop
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| UI Framework | React.js |
+| Styling | Tailwind CSS |
+| Routing | React Router |
+| Data Fetching | TanStack Query (React Query) |
+| HTTP Client | Axios |
+| Auth | JWT |
+| Movie Data | TMDB API |
+
+---
+
+## Architecture
+
+The app follows a modular, component-driven structure with clear separation between UI, logic, and services:
+
+- **Component-based** design for reusability and maintainability
+- **Centralized API service layer** using Axios interceptors
+- **Server state management** via React Query (caching, refetching, loading states)
+- **Protected routes** for authenticated-only pages
+- **Environment-based config** for flexible deployment
+
+---
+
+## Project Structure
 
 ```
 src/
-├── assets/             # Static files (images, logos, icons)
-├── components/         # Reusable components (Navbar, Footer, MovieCard, etc.)
-├── context/            # AuthContext or Global state
-├── pages/              # Page views (Home, MovieDetails, Login, Profile)
-├── services/           # API service handlers
-├── hooks/              # Custom React hooks (e.g., useAuth, useFetch)
-├── App.jsx             # Main App component with routing
-├── main.jsx            # Entry point
+├── components/      # Reusable UI components
+├── pages/           # Route-level page components
+├── hooks/           # Custom React hooks
+├── services/        # API calls and service utilities
+├── context/         # Global app state (where applicable)
+├── assets/          # Images and static files
+└── App.jsx          # App entry point and route config
 ```
+---
+
+## Deployment
+
+| Layer | Platform |
+|---|---|
+| Frontend | Netlify |
+| Backend | Render (see backend repo) |
 
 ---
 
-## 🚦 Routing (React Router)
+## Key Learnings
 
-- `/` — Home (Popular Movies)
-- `/login` — Login Page
-- `/register` — Register Page
-- `/movie/:id` — Movie Details Page
-- `/profile` — User Profile (Protected)
-- `/watchlist` — User’s Watchlist (Protected)
-- `/favorites` — User’s Favorites (Protected)
-
-> Protected routes use `PrivateRoute` to check authentication.
+- Architecting scalable, maintainable React applications
+- Server-state management with React Query
+- JWT authentication and protected routing
+- Third-party API integration (TMDB)
+- Full-stack deployment and environment management
 
 ---
 
-## 🧠 State Management
+## Planned Improvements
 
-- `AuthContext` provides user data and login/logout methods.
-- `localStorage` stores JWT token.
-- Global user state accessed via `useContext(AuthContext)`.
-
----
-
-## 🔐 Authentication Flow
-
-1. On login/register, token is received and saved to `localStorage`.
-2. Token is included in API requests via headers:
-
-```js
-axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-```
-
-3. Protected pages redirect unauthenticated users to `/login`.
+- [ ] AI-powered personalized recommendations
+- [ ] Push notifications for watchlist updates
+- [ ] Advanced genre/rating filters with pagination
+- [ ] Multi-language support
+- [ ] Performance optimization (lazy loading, image compression)
 
 ---
 
-## 📦 Core Features
+## Acknowledgements
 
-### ✅ Authentication
-
-- User login and registration
-- Token-based route protection
-- Persistent login using localStorage
-
-### 🔍 Movie Discovery
-
-- Browse Popular Movies (`/movie/popular`)
-- Search Movies (`/movie/search?query=`)
-- Movie Details Page (`/movie/:id`)
-- Trailers fetched from TMDB
-
-### 📋 User Features
-
-- Watchlist Management (add/remove)
-- Favorites Management (add/remove)
-- Profile Editing (username, bio, social links, profile picture)
-- View submitted reviews
-
-### ✍️ Reviews
-
-- Add, edit, and delete reviews on movies
-- Star ratings displayed
+- [TMDB API](https://www.themoviedb.org/) for movie data
+- [3MTT Nigeria](https://3mtt.nitda.gov.ng/) & [Darey.io](https://darey.io/) for training and mentorship
 
 ---
 
-## 🎨 Styling
+## License & Copyright
 
-- Tailwind CSS for utility-first styling
-- Responsive layout with flex/grid
-- Dark mode support (optional)
+© Mark Okechukwu Asogwa 2025. All rights reserved.
 
----
+This project is **not open source**. The source code, design, and structure of this project are protected under copyright law. You may **not** copy, modify, distribute, or use any part of this project without the author's explicit written permission.
 
-## 🔧 API Service (services/api.js)
-
-Example of authenticated request:
-
-```js
-import axios from "axios";
-
-const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
-});
-
-API.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
-
-export default API;
-```
+For inquiries, reach out via the contact links below.
 
 ---
 
-## 🚀 Deployment
+## Contact
 
-1. Build the app:
-
-```bash
-npm run build
-```
-
-2. Deploy `/dist` folder to Netlify/Vercel
-
-3. Ensure backend URL is set via `.env`:
-
-```env
-VITE_API_URL=https://your-backend.onrender.com/api
-```
-
----
-
-## 🧪 Testing
-
-- Use dev tools and Postman to inspect network requests
-- Test each route manually (public and protected)
-- Check mobile responsiveness
-
----
-
-## 🛠️ Future Improvements
-
-- Add PWA support
-- Implement infinite scrolling or pagination
-- Add user avatars and comments on reviews
-- Notification system
-- Multi-language support
-
----
-
-## 📬 Contact
-
-For frontend issues or suggestions, reach out to: **you@example.com**
+- 💼 LinkedIn: https://www.linkedin.com/in/asogwa-mark-okechukwu/
