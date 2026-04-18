@@ -1,4 +1,4 @@
-# Movie Recommendation App
+# McFlix Movie Recommendation App
 
 > **⚠️ COPYRIGHT NOTICE:** This project and all its source code are the intellectual property of the author. **No part of this codebase may be copied, reproduced, distributed, or used — in whole or in part — without explicit written permission from the author.** Unauthorized use is a violation of copyright law.
 
