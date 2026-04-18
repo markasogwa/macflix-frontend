@@ -112,4 +112,4 @@ For inquiries, reach out via the contact links below.
 ## Contact
 
 - 💼 LinkedIn: [Contact me](https://www.linkedin.com/in/asogwa-mark-okechukwu/)
-  Email: [Email me](asogwaoke@gmail.com)
+  Email: [Email me](mailto:asogwaoke@gmail.com)
