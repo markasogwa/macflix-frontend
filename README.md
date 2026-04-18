@@ -6,8 +6,8 @@
 
 A modern, responsive **Movie Recommendation Web Application** built with **React.js**, powered by the TMDB API, and backed by a custom Node.js/Express REST API. Built as my **Software Development Capstone** project through the 3MTT Nigeria & Darey.io program.
 
-**Live Demo:** https://macflix-movie-app.netlify.app/ 
-**Backend Repo:** https://github.com/markasogwa/macflix-backend
+**Live Demo:** [View app](https://macflix-movie-app.netlify.app/)
+**Backend Repo:** [Backend Code](https://github.com/markasogwa/macflix-backend)
 
 ---
 
@@ -111,4 +111,5 @@ For inquiries, reach out via the contact links below.
 
 ## Contact
 
-- 💼 LinkedIn: https://www.linkedin.com/in/asogwa-mark-okechukwu/
+- 💼 LinkedIn: [Contact me](https://www.linkedin.com/in/asogwa-mark-okechukwu/)
+  Email: [Email me](asogwaoke@gmail.com)
